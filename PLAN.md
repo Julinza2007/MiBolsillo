@@ -28,12 +28,12 @@ Las tareas se marcarán como completadas únicamente cuando se haya verificado s
 - [x] T-001: Crear README.md inicial.
 - [x] T-002: Crear SPEC.md inicial.
 - [ ] T-003: Revisar y cerrar las reglas de negocio.
-- [ ] T-004: Crear AGENTS.md con las instrucciones para los agentes de IA.
+- [x] T-004: Crear AGENTS.md con las instrucciones para los agentes de IA.
 - [ ] T-005: Completar la planificación del proyecto.
 
 ## Etapa 2 — Preparación del entorno
 
-- [ ] T-006: Definir la estructura general del repositorio.
+- [x] T-006: Definir la estructura general del repositorio.
 - [ ] T-007: Inicializar el proyecto frontend con React y Vite.
 - [ ] T-008: Inicializar el proyecto backend con Node.js y Express.
 - [ ] T-009: Configurar las variables de entorno y el archivo .env.example.
