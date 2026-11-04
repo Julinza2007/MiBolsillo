@@ -35,7 +35,7 @@ Las tareas se marcarán como completadas únicamente cuando se haya verificado s
 
 - [x] T-006: Definir la estructura general del repositorio.
 - [x] T-007: Inicializar el proyecto frontend con React y Vite.
-- [ ] T-008: Inicializar el proyecto backend con Node.js y Express.
+- [x] T-008: Inicializar el proyecto backend con Node.js y Express.
 - [ ] T-009: Configurar las variables de entorno y el archivo .env.example.
 - [ ] T-010: Configurar la conexión con PostgreSQL.
 - [ ] T-011: Preparar la estructura inicial de pruebas.
