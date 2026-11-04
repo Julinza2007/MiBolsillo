@@ -1,7 +1,7 @@
 # SPEC.md — MiBolsillo
 
-**Versión:** 0.1  
-**Estado:** Borrador inicial  
+**Versión:** 1.0  
+**Estado:** Especificación del MVP implementado  
 **Tipo de proyecto:** Aplicación web de gestión de finanzas personales
 
 ---
@@ -172,6 +172,16 @@ Balance = Total de ingresos - Total de gastos.
 
 **RN-29. Moneda:** Todos los importes de la aplicación se expresarán en pesos argentinos (ARS). No se realizarán conversiones monetarias.
 
+**RN-30. Edición de presupuestos:** El usuario podrá modificar el importe y el período de sus presupuestos existentes. La aplicación debe impedir que se creen duplicados para la misma categoría y período.
+
+**RN-31. Eliminación de presupuestos:** El usuario podrá eliminar sus propios presupuestos sin eliminar los movimientos financieros asociados.
+
+**RN-32. Edición de categorías personalizadas:** El usuario podrá cambiar el nombre y el tipo de sus categorías personalizadas. No se permitirá cambiar el tipo si la categoría ya está asociada a movimientos o presupuestos.
+
+**RN-33. Filtros de movimientos:** El historial permitirá filtrar movimientos por descripción, tipo, categoría y mes.
+
+**RN-34. Sesiones:** La sesión se identificará mediante un token firmado con vencimiento. Las rutas privadas requerirán un token válido.
+
 # 6. Requisitos funcionales
 
 Los siguientes requisitos describen las funcionalidades que debe ofrecer el sistema.
@@ -193,10 +203,13 @@ Los siguientes requisitos describen las funcionalidades que debe ofrecer el sist
 | RF-13 | El sistema debe mostrar un panel con ingresos, gastos y balance. |
 | RF-14 | El sistema debe mostrar estadísticas y gráficos financieros. |
 | RF-15 | El sistema debe permitir consultar información de diferentes períodos. |
+| RF-16 | El sistema debe permitir modificar y eliminar presupuestos propios. |
+| RF-17 | El sistema debe permitir modificar y eliminar categorías personalizadas, respetando las restricciones de uso. |
+| RF-18 | El sistema debe permitir filtrar movimientos por descripción y mes, además de tipo y categoría. |
 
 # 7. Requisitos no funcionales
 
-**RNF-01. Seguridad:** El sistema debe proteger las contraseñas mediante hash y controlar el acceso a los recursos privados.
+**RNF-01. Seguridad:** El sistema debe proteger las contraseñas mediante scrypt y controlar el acceso a los recursos privados mediante tokens firmados con vencimiento.
 
 **RNF-02. Integridad:** El sistema debe validar la información recibida antes de almacenarla en la base de datos.
 

@@ -1,15 +1,24 @@
-# Dependencias
+# Dependencias y compilaciones
 node_modules/
-
-# Archivos generados
+**/node_modules/
 dist/
+**/dist/
 coverage/
 
-# Variables de entorno
+# Variables de entorno y secretos
 .env
 .env.*
+**/.env
+**/.env.*
 !.env.example
+!**/.env.example
 
-# Sistema operativo
+# Logs
+*.log
+npm-debug.log*
+
+# Sistema operativo y editores
 .DS_Store
 Thumbs.db
+.vscode/
+.idea/

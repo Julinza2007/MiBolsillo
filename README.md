@@ -2,63 +2,169 @@
 
 **Gestor de gastos personales**
 
-MiBolsillo es una aplicación web destinada a la gestión de finanzas personales. Permite organizar ingresos y gastos, administrar categorías, establecer presupuestos mensuales y visualizar información financiera.
+MiBolsillo es una aplicación web para organizar ingresos y gastos personales, administrar categorías, definir presupuestos mensuales y consultar estadísticas financieras. Cada cuenta mantiene su propia información y los importes se expresan en pesos argentinos (ARS).
 
-El proyecto forma parte del Trabajo Práctico Final de Generación T.
+Proyecto desarrollado como Trabajo Práctico Final de Generación T.
 
-## Objetivo
+## Funcionalidades
 
-Desarrollar una aplicación web que facilite el control de las finanzas personales, proporcionando herramientas para registrar movimientos económicos, organizar gastos y realizar un seguimiento de los presupuestos.
+- Registro, inicio y cierre de sesión.
+- Contraseñas protegidas mediante scrypt y sesiones firmadas con JWT.
+- Registro, consulta, edición y eliminación de ingresos y gastos.
+- Filtros de movimientos por texto, tipo, categoría y mes.
+- Categorías predefinidas y categorías personalizadas editables.
+- Presupuestos mensuales por categoría de gasto, con seguimiento y advertencias al alcanzar o superar el límite.
+- Dashboard con balance, ingresos, gastos, últimos movimientos y presupuestos.
+- Estadísticas con evolución de los últimos seis meses y distribución de gastos.
+- Separación de datos por usuario y validaciones en el backend.
 
-## Funcionalidades previstas
-
-- Registro e inicio de sesión de usuarios.
-- Registro, consulta, modificación y eliminación de ingresos y gastos.
-- Gestión de categorías predefinidas y personalizadas.
-- Creación y administración de presupuestos mensuales.
-- Advertencias cuando se alcanza o supera un presupuesto.
-- Panel principal con resumen financiero.
-- Gráficos y estadísticas de ingresos y gastos.
-- Filtros para consultar movimientos por fecha, tipo y categoría.
-- Protección y separación de la información de cada usuario.
-
-## Tecnologías previstas
+## Tecnologías
 
 | Componente | Tecnología |
 |---|---|
 | Frontend | React + Vite |
 | Backend | Node.js + Express |
 | Base de datos | PostgreSQL |
-| Hosting frontend | Netlify |
-| Hosting backend | Render |
-| Hosting de base de datos | Neon |
+| Proveedor de base de datos | Neon |
+| Frontend publicado | Netlify |
+| Backend publicado | Render |
 | Control de versiones | Git + GitHub |
 
-## Documentación
+## Requisitos
 
-El repositorio contará con la siguiente documentación:
+- Node.js 22.12 o superior.
+- npm.
+- Una base de datos PostgreSQL. Para producción se utiliza Neon.
 
-- `SPEC.md`: especificación del proyecto, reglas de negocio y requisitos.
-- `PLAN.md`: planificación y organización de las tareas.
-- `AGENTS.md`: instrucciones y convenciones para los agentes de IA.
-- `INFORME_PRUEBAS.md`: documentación de las pruebas realizadas.
-- `README.md`: descripción general e información del proyecto.
+## Configuración local
 
-## Estado del proyecto
+### 1. Backend
 
-**En desarrollo.**
+Desde la raíz del repositorio:
 
-Actualmente se está trabajando en la definición de los requisitos, las reglas de negocio y la planificación del proyecto.
+```bash
+cd backend
+npm install
+cp .env.example .env
+```
 
-Las funcionalidades mencionadas representan el alcance previsto y todavía no se encuentran implementadas.
+Editá `backend/.env` y completá `DATABASE_URL` con la cadena de conexión de PostgreSQL/Neon. `PORT` puede mantenerse en `3000`. Para desarrollo local, si no definís `JWT_SECRET`, la aplicación utiliza una clave de desarrollo; **en producción es obligatorio definir una clave propia de al menos 32 caracteres**.
 
-## Instalación y ejecución
+Podés generar una clave con:
 
-Las instrucciones de instalación y ejecución se incorporarán una vez que estén desarrolladas las estructuras del frontend y backend.
+```bash
+node -e "console.log(require('node:crypto').randomBytes(48).toString('hex'))"
+```
 
-## Autoría
+Iniciá el backend:
 
-Proyecto desarrollado como Trabajo Práctico Final de la materia Generación T.
+```bash
+npm run dev
+```
+
+Al iniciar, el backend crea las tablas necesarias y carga las categorías predefinidas si todavía no existen. La comprobación de conexión queda disponible en `http://localhost:3000/api/health`.
+
+### 2. Frontend
+
+Abrí otra terminal desde la raíz:
+
+```bash
+cd frontend
+npm install
+cp .env.example .env
+```
+
+El archivo `frontend/.env` utiliza por defecto `VITE_API_URL=http://localhost:3000/api`. Iniciá la interfaz:
+
+```bash
+npm run dev
+```
+
+Abrí la dirección que informa Vite, normalmente `http://localhost:5173`.
+
+### 3. Primer uso
+
+Registrá una cuenta desde la pantalla inicial. Después podés cargar ingresos y gastos, crear categorías y configurar presupuestos. Los datos se guardan en PostgreSQL.
+
+## Pruebas y calidad
+
+Backend:
+
+```bash
+cd backend
+npm test
+```
+
+Frontend:
+
+```bash
+cd frontend
+npm run lint
+npm run build
+```
+
+Las pruebas automatizadas del backend cubren validaciones, períodos mensuales, hash de contraseñas y firma/verificación de sesiones. La conexión real con la base requiere acceso de red a Neon.
+
+## API principal
+
+Todas las rutas, salvo registro, inicio de sesión y health check, requieren `Authorization: Bearer <token>`.
+
+| Método | Ruta | Descripción |
+|---|---|---|
+| GET | `/api/health` | Estado de la API y PostgreSQL |
+| POST | `/api/auth/register` | Crear una cuenta |
+| POST | `/api/auth/login` | Iniciar sesión |
+| GET | `/api/categories` | Listar categorías disponibles |
+| POST / PUT / DELETE | `/api/categories` | Administrar categorías personalizadas |
+| GET / POST | `/api/transactions` | Consultar y registrar movimientos |
+| PUT / DELETE | `/api/transactions/:id` | Editar y eliminar movimientos |
+| GET / POST | `/api/budgets` | Consultar y crear presupuestos |
+| PUT / DELETE | `/api/budgets/:id` | Editar y eliminar presupuestos |
+| GET | `/api/dashboard` | Indicadores, evolución y resumen financiero |
+
+## Publicación
+
+### Neon
+
+1. Crear un proyecto PostgreSQL en Neon.
+2. Copiar la cadena de conexión y configurarla como `DATABASE_URL` en Render.
+3. El esquema se inicializa automáticamente al iniciar el backend.
+
+### Render
+
+El archivo `render.yaml` define el servicio `mibolsillo-api`. Al crear el servicio desde el repositorio, configurar:
+
+- `DATABASE_URL`: cadena de conexión de Neon.
+- `JWT_SECRET`: una clave aleatoria de al menos 32 caracteres (Render puede generarla).
+- `FRONTEND_URL`: URL pública del sitio Netlify, sin barra final.
+- `NODE_ENV`: `production`.
+
+La comprobación de salud es `/api/health`.
+
+### Netlify
+
+El archivo `netlify.toml` configura `frontend` como directorio base, `npm run build` como comando de compilación y `dist` como directorio publicado. Configurar la variable `VITE_API_URL` con la URL pública del backend más `/api`, por ejemplo `https://tu-api.onrender.com/api`.
+
+Después de conocer el dominio de Netlify, actualizar `FRONTEND_URL` en Render para habilitar CORS desde ese origen.
+
+## Variables de entorno y seguridad
+
+- No subir `backend/.env`, `frontend/.env` ni credenciales al repositorio.
+- Los archivos `.env.example` son plantillas sin secretos.
+- No compartir la cadena `DATABASE_URL`.
+- En producción usar una clave `JWT_SECRET` propia, larga y aleatoria.
+- Los tokens se transmiten mediante `Authorization: Bearer`.
+
+## Documentación del proyecto
+
+- `SPEC.md`: reglas de negocio y requisitos.
+- `PLAN.md`: etapas, tareas y estado del desarrollo.
+- `AGENTS.md`: instrucciones para agentes de IA.
+- `INFORME_PRUEBAS.md`: pruebas ejecutadas y limitaciones conocidas.
+
+## Estado
+
+El MVP está implementado en el código fuente. La publicación en Render y Netlify y la verificación en línea final deben completarse con las cuentas y variables de entorno del propietario del proyecto.
 
 ---
 

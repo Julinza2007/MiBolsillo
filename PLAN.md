@@ -1,25 +1,15 @@
 # PLAN.md — MiBolsillo
 
-**Versión:** 0.1  
-**Estado:** Planificación inicial
+**Versión:** 1.0  
+**Estado:** MVP implementado; pruebas de integración y publicación pendientes.
 
 # 1. Objetivo
 
-Organizar el desarrollo de MiBolsillo en etapas y tareas concretas, permitiendo realizar un seguimiento del progreso y verificar el cumplimiento de los requisitos establecidos en `SPEC.md`.
+Organizar el desarrollo de MiBolsillo en tareas concretas, con criterios verificables y un commit individual por tarea.
 
 # 2. Metodología de trabajo
 
-El desarrollo se organizará mediante tareas identificadas individualmente.
-
-Cada tarea deberá:
-
-- Tener un identificador único.
-- Tener un objetivo concreto.
-- Contar con un criterio de finalización verificable.
-- Ser implementada y probada antes de marcarse como terminada.
-- Contar con un commit individual en Git.
-
-Las tareas se marcarán como completadas únicamente cuando se haya verificado su cumplimiento.
+Cada tarea debe tener un objetivo concreto, cumplir los requisitos de `SPEC.md`, contar con verificaciones adecuadas y finalizar con un commit descriptivo. Una tarea no se marcará como terminada si no cumple su criterio de finalización.
 
 # 3. Etapas del proyecto
 
@@ -27,79 +17,60 @@ Las tareas se marcarán como completadas únicamente cuando se haya verificado s
 
 - [x] T-001: Crear README.md inicial.
 - [x] T-002: Crear SPEC.md inicial.
-- [ ] T-003: Revisar y cerrar las reglas de negocio.
-- [x] T-004: Crear AGENTS.md con las instrucciones para los agentes de IA.  
-- [ ] T-005: Completar la planificación del proyecto.
+- [x] T-003: Revisar y cerrar las reglas de negocio del MVP.
+- [x] T-004: Crear AGENTS.md con las instrucciones para los agentes de IA.
+- [x] T-005: Completar la planificación inicial.
 
 ## Etapa 2 — Preparación del entorno
 
 - [x] T-006: Definir la estructura general del repositorio.
-- [x] T-007: Inicializar el proyecto frontend con React y Vite.
-- [x] T-008: Inicializar el proyecto backend con Node.js y Express.
-- [x] T-009: Configurar las variables de entorno y el archivo .env.example.
-- [x] T-010: Configurar la conexión con PostgreSQL.
-- [ ] T-011: Preparar la estructura inicial de pruebas.
+- [x] T-007: Inicializar el frontend con React y Vite.
+- [x] T-008: Inicializar el backend con Node.js y Express.
+- [x] T-009: Configurar las variables de entorno y los archivos de ejemplo.
+- [x] T-010: Configurar la conexión con PostgreSQL/Neon.
 
-## Etapa 3 — Base de datos y backend
+## Etapa 3 — Backend y base de datos
 
-- [ ] T-012: Diseñar e implementar el modelo de datos.
-- [ ] T-013: Implementar el registro de usuarios.
-- [ ] T-014: Implementar el inicio y cierre de sesión.
-- [ ] T-015: Implementar la protección de rutas y recursos privados.
-- [ ] T-016: Implementar la consulta de categorías predefinidas.
-- [ ] T-017: Implementar la gestión de categorías personalizadas.
-- [ ] T-018: Implementar el registro y consulta de movimientos.
-- [ ] T-019: Implementar la modificación y eliminación de movimientos.
-- [ ] T-020: Implementar los filtros de movimientos.
-- [ ] T-021: Implementar la creación y administración de presupuestos.
-- [ ] T-022: Implementar el cálculo del consumo y las advertencias de presupuestos.
-- [ ] T-023: Implementar los cálculos e indicadores financieros.
-- [ ] T-024: Implementar las pruebas automatizadas del backend.
+- [x] T-011: Preparar las pruebas automatizadas y las validaciones del backend.
+- [x] T-012: Diseñar el modelo relacional e inicializar el esquema PostgreSQL.
+- [x] T-013: Implementar registro, inicio de sesión, hash de contraseñas y protección de rutas.
+- [x] T-014: Implementar la consulta y gestión de categorías predefinidas y personalizadas.
+- [x] T-015: Implementar el CRUD de movimientos y sus filtros.
+- [x] T-016: Implementar presupuestos mensuales, consumo y advertencias.
+- [x] T-017: Implementar indicadores del dashboard y estadísticas financieras.
+- [x] T-018: Integrar los módulos en la API e inicializar la base al iniciar el servidor.
 
-## Etapa 4 — Desarrollo del frontend
+## Etapa 4 — Frontend e integración
 
-- [ ] T-025: Implementar la estructura general de navegación.
-- [ ] T-026: Desarrollar las pantallas de registro e inicio de sesión.
-- [ ] T-027: Desarrollar el panel principal.
-- [ ] T-028: Desarrollar la gestión de movimientos.
-- [ ] T-029: Desarrollar la gestión de categorías.
-- [ ] T-030: Desarrollar la gestión de presupuestos.
-- [ ] T-031: Desarrollar las estadísticas y gráficos.
-- [ ] T-032: Implementar validaciones y mensajes de error.
-- [ ] T-033: Adaptar la interfaz a dispositivos móviles.
+- [x] T-019: Implementar la interfaz completa y responsive: autenticación, dashboard, movimientos, categorías, presupuestos y estadísticas, conectada con la API.
 
-## Etapa 5 — Integración y validación
+## Etapa 5 — Documentación y validación
 
-- [ ] T-034: Integrar completamente el frontend con el backend.
-- [ ] T-035: Verificar las reglas de negocio mediante pruebas.
-- [ ] T-036: Realizar pruebas de integración.
-- [ ] T-037: Corregir los errores detectados.
-- [ ] T-038: Elaborar el informe de pruebas.
+- [x] T-020: Actualizar SPEC, PLAN, AGENTS, README, informe de pruebas y configuración de despliegue.
+- [ ] T-021: Ejecutar pruebas funcionales completas de las reglas de negocio contra Neon.
+- [ ] T-022: Ejecutar pruebas de integración completas entre frontend, backend y PostgreSQL.
 
 ## Etapa 6 — Publicación
 
-- [ ] T-039: Publicar la base de datos en un servicio online.
-- [ ] T-040: Publicar el backend.
-- [ ] T-041: Publicar el frontend.
-- [ ] T-042: Configurar la comunicación entre los servicios.
-- [ ] T-043: Verificar el funcionamiento de la aplicación publicada.
-- [ ] T-044: Completar el README con instrucciones de instalación y enlaces públicos.
+- [x] T-023: Crear la base de datos online en Neon.
+- [ ] T-024: Publicar el backend en Render.
+- [ ] T-025: Publicar el frontend en Netlify.
+- [ ] T-026: Configurar las URLs y variables de entorno entre los servicios publicados.
+- [ ] T-027: Verificar el funcionamiento completo mediante los enlaces públicos.
 
 # 4. Criterios generales de finalización
 
 Una tarea podrá marcarse como completada cuando:
 
 1. Se haya implementado lo solicitado.
-2. Se haya verificado su funcionamiento.
-3. Se hayan ejecutado las pruebas correspondientes.
+2. Se haya verificado su funcionamiento en el alcance correspondiente.
+3. Se hayan ejecutado las pruebas disponibles.
 4. Se haya realizado su commit individual.
 
-# 5. Control del progreso
+# 5. Estado de entrega
 
-El estado de las tareas se actualizará a medida que avance el desarrollo.
-
-Las tareas pendientes no deberán considerarse terminadas hasta cumplir sus respectivos criterios de finalización.
+El MVP está implementado en el código fuente. La validación integral contra Neon y la publicación en Render y Netlify todavía requieren ejecutarse con acceso a los servicios y sus variables de entorno.
 
 ---
 
-**Fin del plan inicial de desarrollo de MiBolsillo.**
+**Fin del plan de desarrollo de MiBolsillo.**
