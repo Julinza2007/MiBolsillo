@@ -6,6 +6,13 @@ MiBolsillo es una aplicación web para organizar ingresos y gastos personales, a
 
 Proyecto desarrollado como Trabajo Práctico Final de Generación T.
 
+## 🚀 Proyecto desplegado
+
+- **Aplicación web (Netlify):** https://julinza2007-mibolsillo.netlify.app
+- **Backend API (Render):** https://mibolsillo-api-j597.onrender.com
+- **Estado del backend:** https://mibolsillo-api-j597.onrender.com/api/health
+- **Base de datos:** PostgreSQL alojada en [Neon](https://neon.tech/).
+
 ## Funcionalidades
 
 - Registro, inicio y cierre de sesión.
